@@ -53,7 +53,6 @@ export function DropMeMessage() {
   >("idle");
   const [messages, setMessages] = useState<Message[]>([]);
   const [showModal, setShowModal] = useState(false);
-  const [responseMessage, setResponseMessage] = useState<Message | null>(null);
 
   const fetchMessages = async () => {
     try {
@@ -106,13 +105,7 @@ export function DropMeMessage() {
       setEmail("");
       setMessage("");
       await fetchMessages();
-      toast.success("Message sent successfully!");
-
-      // Set the response message and show the modal
-      if (messages.length > 0) {
-        setResponseMessage(messages[0]);
-        setShowModal(true);
-      }
+      setShowModal(true);
     } catch (error) {
       console.error("Form submission error:", error);
       setSubmitStatus("error");
@@ -219,7 +212,7 @@ export function DropMeMessage() {
 
       {/* Modal */}
       <AnimatePresence>
-        {showModal && responseMessage && (
+        {showModal && messages.length > 0 && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -257,20 +250,20 @@ export function DropMeMessage() {
                 <div className="bg-gray-700 bg-opacity-50 backdrop-blur-lg rounded-xl p-4 mb-4">
                   <p className="text-gray-200 text-lg mb-2">
                     <strong className="text-yellow-400">Name:</strong>{" "}
-                    {responseMessage.name}
+                    {messages[0].name}
                   </p>
                   <p className="text-gray-200 text-lg mb-2">
                     <strong className="text-yellow-400">Message:</strong>{" "}
-                    {responseMessage.message}
+                    {messages[0].message}
                   </p>
                   <div className="text-gray-200 text-lg flex items-center">
                     <strong className="text-yellow-400 mr-2">Emotion:</strong>
                     <div className="flex items-center">
                       <span className="mr-2 capitalize">
-                        {responseMessage.emotion_type ?? "Normal"}
+                        {messages[0].emotion_type ?? "Normal"}
                       </span>
                       <span className="text-3xl">
-                        {getEmotionEmoji(responseMessage.emotion_type)}
+                        {getEmotionEmoji(messages[0].emotion_type)}
                       </span>
                     </div>
                   </div>
