@@ -1,9 +1,11 @@
-import React, { useRef, useMemo } from "react";
+import { useRef, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
 import { Github, Linkedin, Mail, ChevronDown } from "lucide-react";
+import { Certifications } from "./Certifications";
+import { DropMeMessage } from "./DropMeMessage";
 
 function StarField({ count = 5000 }) {
   const points = useRef();
@@ -20,6 +22,7 @@ function StarField({ count = 5000 }) {
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
+    // @ts-ignore
     points.current.rotation.y = time * 0.05;
   });
 
@@ -46,7 +49,9 @@ function Star() {
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime();
+    // @ts-ignore
     mesh.current.rotation.y = time * 0.5;
+    // @ts-ignore
     mesh.current.rotation.x = time * 0.3;
   });
 
@@ -90,7 +95,7 @@ function FloatingImage({ src, alt, x, y, delay }) {
       transition={{
         duration: 10,
         delay,
-        repeat: Infinity,
+        repeat: Number.POSITIVE_INFINITY,
         repeatType: "reverse",
       }}
     />
@@ -98,67 +103,35 @@ function FloatingImage({ src, alt, x, y, delay }) {
 }
 
 export function Portfolio() {
-  const sections = ["About", "Skills", "Projects", "Contact"];
-
   const skills = [
     { name: "JavaScript & TypeScript", level: 90 },
     { name: "React & React Native", level: 85 },
-    { name: "Next.js", level: 80 },
-    { name: "Adonis.js", level: 70 },
+    { name: "AWS", level: 80 },
+    { name: "Terraform", level: 60 },
     { name: "Flutter", level: 60 },
-    { name: "AWS", level: 60 },
+    { name: "Go", level: 50 },
+    { name: "Kubernetes", level: 30 },
     { name: "Python", level: 30 },
-    { name: "FastAPI", level: 30 },
   ];
 
   const projects = [
     {
       name: "E-commerce Platform",
-      description: "Built with React and Node.js",
+      description: "Built with React, Docker, Terraform, AWS",
     },
-    { name: "AI Chatbot", description: "Built with Next.js and OpenAI API" },
+    {
+      name: "AI Chatbot",
+      description: "Built with Next.js, GitHub Actions, Terraform, OpenAI",
+    },
     {
       name: "Mobile App",
-      description: "Cross-platform app with React Native & Flutter",
+      description: "Built with React Native & Flutter",
     },
     {
       name: "Environment Sustainability Services",
-      description: "Built with Adonis.js & Inertia.js",
+      description: "Built with Next.js, Jenkins, Terraform, AWS",
     },
   ];
-
-  // const floatingImages = [
-  //   {
-  //     src: "/TypeScript.png",
-  //     alt: "Typescript",
-  //     x: "10%",
-  //     y: "20%",
-  //   },
-  //   {
-  //     src: "/React.png",
-  //     alt: "React",
-  //     x: "80%",
-  //     y: "15%",
-  //   },
-  //   {
-  //     src: "/Node.js.png",
-  //     alt: "Node.js",
-  //     x: "20%",
-  //     y: "70%",
-  //   },
-  //   {
-  //     src: "/Tailwindcss.png",
-  //     alt: "Tailwind",
-  //     x: "75%",
-  //     y: "75%",
-  //   },
-  //   {
-  //     src: "/Next.js.png",
-  //     alt: "Next.js",
-  //     x: "45%",
-  //     y: "10%",
-  //   },
-  // ];
 
   const floatingImages = [
     {
@@ -234,7 +207,7 @@ export function Portfolio() {
               transition={{ duration: 1, delay: 1 }}
               className="text-2xl md:text-4xl mb-4 text-yellow-300"
             >
-              Software Engineer
+              DevOps Engineer
             </motion.h2>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -243,26 +216,8 @@ export function Portfolio() {
               className="flex flex-col items-center space-y-4"
             >
               <p className="text-lg text-gray-300 max-w-md">
-                Crafting innovative solutions with code, one project at a time.
+                Keep calm and code on !
               </p>
-              {/* <div className="flex space-x-4">
-                <motion.a
-                  href="#about"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-2 rounded-full text-lg font-semibold transition duration-300 ease-in-out inline-block"
-                >
-                  Explore My Universe
-                </motion.a>
-                <motion.a
-                  href="#contact"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="bg-transparent border-2 border-yellow-600 text-yellow-400 hover:bg-yellow-600 hover:text-white px-6 py-2 rounded-full text-lg font-semibold transition duration-300 ease-in-out inline-block"
-                >
-                  Get in Touch
-                </motion.a>
-              </div> */}
             </motion.div>
           </div>
         </div>
@@ -272,7 +227,7 @@ export function Portfolio() {
           transition={{
             duration: 1,
             delay: 2,
-            repeat: Infinity,
+            repeat: Number.POSITIVE_INFINITY,
             repeatType: "reverse",
           }}
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
@@ -293,7 +248,7 @@ export function Portfolio() {
               transition={{ duration: 1 }}
               className="text-lg max-w-2xl mx-auto text-center text-gray-300"
             >
-              I'm a passionate software engineer with expertise in full-stack
+              I'm a passionate DevOps engineer with expertise in full-stack
               development. I enjoy exploring new technologies and approaches to
               enhance the development process. My focus is on building software
               that not only meets user needs but also provides an intuitive and
@@ -337,7 +292,9 @@ export function Portfolio() {
           </div>
         </section>
 
-        <section id="projects" className="py-20 bg-gray-800 bg-opacity-50">
+        <Certifications />
+
+        <section id="projects" className="py-20 bg-gray-900 bg-opacity-50">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-8 text-center text-yellow-400">
               Projects
@@ -362,6 +319,8 @@ export function Portfolio() {
           </div>
         </section>
 
+        <DropMeMessage />
+
         <section id="contact" className="py-20 bg-gray-900 bg-opacity-50">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-8 text-center text-yellow-400">
@@ -369,7 +328,7 @@ export function Portfolio() {
             </h2>
             <div className="flex justify-center space-x-6">
               <motion.a
-                href=""
+                href="https://github.com/kekloon"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2, color: "#FFD700" }}
@@ -378,7 +337,7 @@ export function Portfolio() {
               >
                 <Github size={32} />
               </motion.a>
-              <motion.a
+              {/* <motion.a
                 href=""
                 target="_blank"
                 rel="noopener noreferrer"
@@ -395,7 +354,7 @@ export function Portfolio() {
                 className="text-gray-300 hover:text-yellow-400"
               >
                 <Mail size={32} />
-              </motion.a>
+              </motion.a> */}
             </div>
           </div>
         </section>
@@ -403,7 +362,7 @@ export function Portfolio() {
 
       <footer className="bg-gray-800 bg-opacity-90 py-4">
         <div className="container mx-auto px-4 text-center text-gray-400">
-          © 2024 Edmond Wong. All rights reserved.
+          © 2025 Edmond Wong. All rights reserved.
         </div>
       </footer>
     </div>
