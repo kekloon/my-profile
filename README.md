@@ -40,9 +40,3 @@ Inside the project, you'll find the following folders and files:
 - **Framer Motion**: Animation library for React.
 - **Three.js**: 3D library for creating graphics.
 - **Lucide React**: Icon library.
-
-## 📚 Learn More
-
-Feel free to check [Astro's documentation](https://docs.astro.build) or join the [Astro Discord server](https://astro.build/chat) for more information.
-
-```
